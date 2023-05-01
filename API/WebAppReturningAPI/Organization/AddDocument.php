@@ -12,7 +12,7 @@
     $student_id = $_REQUEST['student_id'];
     // $type = $_REQUEST['type'];
 
-    $target_dir = '../Student_data/'.$student_id.'/1/';
+    $target_dir = '../../Student_data/'.$student_id.'/1/';
     $query = "INSERT INTO document_details(student_id, organization_id, document_name, path) VALUES (1, 1, '$file_name', '$target_dir')";
     if ($con-> query($query)) {
         $target_file = $target_dir . basename($file_name);
