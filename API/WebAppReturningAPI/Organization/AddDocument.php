@@ -13,15 +13,21 @@
     // $type = $_REQUEST['type'];
 
     $target_dir = '../Student_data/'.$student_id.'/1/';
-    $query = "INSERT INTO documents(student_id, organization_id, document_name, path) VALUES ($student_id, 1, $file_name, $target_dir)";
+    $query = "INSERT INTO document_details(student_id, organization_id, document_name, path) VALUES (1, 1, '$file_name', '$target_dir')";
+    if ($con-> query($query)) {
+        $target_file = $target_dir . basename($file_name);
+        move_uploaded_file($file_data, $target_file);
 
-    // Move the file to a permanent location on the server
-    $target_file = $target_dir . basename($file_name);
-    move_uploaded_file($file_data, $target_file);
-
-    echo "<script>
-        alert('Done!!');
-        window.location.href='http://localhost:3000/Organization/AddDocuments';
-        </script>";
-    die();
+        echo "<script>
+            alert('Done!!');
+            window.location.href='http://localhost:3000/Organization/AddDocuments';
+            </script>";
+        die();
+    } else {
+        echo "<script>
+            alert('Done!!');
+            window.location.href='http://localhost:3000/Organization/AddDocuments';
+            </script>";
+        die();
+    }
 ?>
